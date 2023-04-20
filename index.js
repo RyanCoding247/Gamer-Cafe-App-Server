@@ -73,4 +73,9 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
-exports.gamerCafeServer = app;
+module.exports = app;
+
+// test on localhost 3030 with url http://localhost:3030/
+// app.listen(3030, () => {
+//     console.log('Server has started.')
+// })

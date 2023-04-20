@@ -2,14 +2,6 @@ const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 const Schema = mongoose.Schema;
 
-const favoriteSchema = new Schema({
-    campsiteId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Campsite',
-        required: true
-    }
-});
-
 const userSchema = new Schema({
     username: {
         type: String,
@@ -19,17 +11,24 @@ const userSchema = new Schema({
     },
     firstname: {
         type: String,
-        default: ''
+        default: '',
     },
     lastname: {
         type: String,
-        default: ''
+        default: '',
+    },
+    email: {
+        type: String,
+        default: '',
+    },
+    remember: {
+        type: Boolean,
+        default: false,
     },
     admin: {
         type: Boolean,
         default: false
-    },
-    favorites: [favoriteSchema]
+    }
 });
 
 userSchema.plugin(passportLocalMongoose);

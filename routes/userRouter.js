@@ -26,7 +26,7 @@ userRouter.get(
     }
 );
 
-userRouter.post('/signup', cors.corsWithOptions, (req, res) => {
+userRouter.post('/signup', cors.cors, (req, res) => {
     User.register(
         new User({ username: req.body.username }),
         req.body.password,
@@ -93,9 +93,9 @@ userRouter.post('/login', cors.corsWithOptions, (req, res, next) => {
             return res.json({
                 success: true,
                 token: token,
+                username: user.username,
                 id: req.user._id,
-                favorites: req.user.favorites,
-                status: 'You are successfully logged in!'
+                status: 'You are successfully logged in dude!'
             });
         });
     })(req, res, next);
@@ -106,7 +106,7 @@ userRouter.get(
     cors.corsWithOptions,
     authenticate.verifyUser,
     (req, res, next) => {
-        authenticate.getToken({ _id: req.user._id }, 0);
+        authenticate.getToken({ _id: req.user._id },0);
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.json({
